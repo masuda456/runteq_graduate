@@ -88,3 +88,20 @@ CPU対局(本将棋で実装できた場合)
 ログインやサインイン周り：localstorageを使って２回目以降のログインの手間を減らしたい
 
 CPU対局：技巧api(https://qiita.com/na-o-ys/items/b04ce27732c82b6beb9b)
+
+## 使用予定の技術スタック
+OS : Linux(CentOS?)
+Webサーバー : Nginx
+バックエンド言語 : Ruby(Rails)
+フロントエンド言語 : javascript(JQuery)
+データベース : MySql
+
+## 追加サービス案
+大会の開催(レギュレーションでカードの使える種類や枚数、制限時間を変えるなど)
+
+駒のデザイン変更
+
+将棋盤のデザイン変更
+
+レーティング機能
+
