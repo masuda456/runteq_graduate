@@ -103,14 +103,9 @@
 
 
 ■ 採用予定の技術
-
-OS : Linux(CentOS)
-
-Webサーバー : NginxかApache
-
-バックエンド言語 : Ruby(Rails)
-
-フロントエンド言語 : javascript(JQuery)
-
-データベース : MySql
-
+ - OS : Linux(CentOS)
+ - Webサーバー : NginxかApache
+ - バックエンド言語 : Ruby(Rails)
+ - フロントエンド言語 : javascript(JQuery)
+ - データベース : MySql
+ - 外部サービス : GoogleMap api
