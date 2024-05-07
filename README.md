@@ -109,3 +109,6 @@
  - フロントエンド言語 : javascript(JQuery)
  - データベース : MySql
  - 外部サービス : GoogleMap api
+
+■ ER図
+https://dbdiagram.io/d/6639ce189e85a46d552baf17
