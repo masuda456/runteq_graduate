@@ -3,6 +3,9 @@ ARG RUBYGEMS_VERSION=3.3.20
 
 WORKDIR /app
 
+# 必要なパッケージをインストール
+RUN apt-get update -qq && apt-get install -y nodejs
+
 # ホストのGemfileをコンテナ内の作業ディレクトリにコピー
 COPY Gemfile Gemfile.lock /app/
 
