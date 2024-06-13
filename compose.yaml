@@ -10,13 +10,22 @@ services:
     ports:
       - '3307:3306'
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "8080:80"
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/runteq_graduate
+      - .:/app
     ports:
       - 3005:3000
     stdin_open: true
