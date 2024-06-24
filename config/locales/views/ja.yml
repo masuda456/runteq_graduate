@@ -25,3 +25,8 @@ ja:
     create_board: 掲示板作成
     bookmark_index: ブックマーク一覧
     profile: プロフィール
+  date:
+    order:
+      - :year
+      - :month
+      - :day

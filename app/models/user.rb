@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :exercises
 
   enum gender: { unknown: 0, male: 1, female: 2 }
+  enum only_same_gender_default: { all_genders: 0, same_gender: 1 }
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -23,6 +24,17 @@ class User < ApplicationRecord
         exercise_id: exercise.id,
         one_rep_max_theoretical: one_rep_max_theoretical
       )
+    end
+  end
+
+  def gender_in_japanese
+    case gender
+    when 'male'
+      '男性'
+    when 'female'
+      '女性'
+    else
+      '不明'
     end
   end
 end

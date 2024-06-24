@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
 
-  resources :users, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+  root 'introductions#show'
 
+  # ログイン
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
+  # { turbo_method: :delete } って書いても何故かgetされる、これ以上時間かけられないので一旦getでログアウト処理をルーティング
+  # get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get 'main_pages/top', to: 'main_pages#top'
-  get 'main_pages/introduction', to: 'main_pages#introduction', as: 'introduction_main_pages'
+  # ユーザー
+  resources :users, only: [:new, :create, :edit, :update]
 
-  get 'signup', to: 'users#new'
-  post 'signup', to: 'users#create'
+  # スケジュール
+  get 'main', to: 'workout_schedules#new'
+
+  resources :workout_schedules, only: [:create]
+
+  resources :workout_schedules do
+    collection do
+      get :search
+    end
+  end
+
 end

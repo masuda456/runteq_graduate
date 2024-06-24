@@ -1,0 +1,7 @@
+<%= form.label :address, '住所を入力して付近のジムを検索', class: 'form-label mt-2' %>
+<%= text_field_tag :address, nil, class: 'form-control', id: 'address-search', name: nil %>
+<%= form.label :date, '日付を選択', class: 'form-label mt-2' %>
+<%= date_field_tag :date, nil, class: 'form-control', id: 'date-search', name: nil %>
+<div class="input-group-append">
+  <%= button_tag 'ジムを検索', type: 'button', class: 'btn btn-primary map-request mt-2', value: 'search' %>
+</div>

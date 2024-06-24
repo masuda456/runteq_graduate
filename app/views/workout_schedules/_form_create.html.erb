@@ -1,0 +1,56 @@
+<%= form.label :address, '住所を入力して付近のジムを検索', class: 'form-label mt-2' %>
+<div class="input-group">
+  <%= text_field_tag :address, nil, class: 'form-control me-3', id: 'address' %>
+  <div class="input-group-append">
+    <%= button_tag 'ジムを検索', type: 'button', class: 'btn btn-secondary map-request' , value: 'create' %>
+  </div>
+</div>
+<%= form.label :googlemap_place_name, '施設名', class: 'form-label' %>
+<%= form.hidden_field :googlemap_place_id, id: 'googlemap_place_id', name: 'workout_schedule[googlemap_place_id]' %>
+<%= form.hidden_field :googlemap_place_lat, id: 'googlemap_place_lat', name: 'workout_schedule[googlemap_place_lat]' %>
+<%= form.hidden_field :googlemap_place_lng, id: 'googlemap_place_lng', name: 'workout_schedule[googlemap_place_lng]' %>
+<div class="input-group mb-3">
+  <%= form.text_field :googlemap_place_name, id: 'googlemap_place_name', class: 'form-control me-3', name: 'workout_schedule[googlemap_place_name]' %>
+  <div class="input-group-append">
+    <%= button_tag '地図を再表示', type: 'button', id: 'show-map', class: 'btn btn-secondary', data: { toggle: 'modal', target: '#mapModal' } %>
+  </div>
+</div>
+<%= form.label :target_parts, '対象部位', class: 'form-label' %>
+<div class="form-group">
+  <% WorkoutSchedule::TARGET_PARTS.each do |part, column| %>
+    <div class="form-check form-check-inline">
+      <%= form.check_box column, { class: 'form-check-input', id: "target_parts_#{column}", name: "workout_schedule[#{column}]" }, '1', '0' %>
+      <%= form.label "target_parts_#{column}", part, class: 'form-check-label' %>
+    </div>
+  <% end %>
+</div>
+<%= form.label :only_same_gender, '公開設定(性別)', class: 'form-label' %>
+<div class="form-group">
+  <% WorkoutSchedule.only_same_genders.keys.each do |key| %>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :only_same_gender, key, id: "only_same_gender_#{key}", class: 'form-check-input', name: 'workout_schedule[only_same_gender]', checked: (current_user.only_same_gender_default == key.to_s) %>
+      <%= form.label "only_same_gender_#{key}", WorkoutSchedule::ONLY_SAME_GENDER_OPTIONS[key.to_sym], class: 'form-check-label' %>
+    </div>
+  <% end %>
+</div>
+<%= form.label :date_time_range, '日付と時間帯', class: 'form-label' %>
+<div class="form-group row">
+  <div class="col-md-4">
+    <div class="input-group mb-3">
+      <%= date_field_tag :date, nil, class: 'form-control', name: 'date' %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <%= form.label :start_at, '開始', class: 'input-group-text' %>
+      <%= form.time_select :start_at, { class: 'form-control', name: 'workout_schedule[start_at]' } %>
+      <%= form.label :finish_at, '終了', class: 'input-group-text ms-2' %>
+      <%= form.time_select :finish_at, { class: 'form-control', name: 'workout_schedule[finish_at]' } %>
+    </div>
+  </div>
+</div>
+<%= form.label :looks, '外見的特徴など', class: 'form-label' %>
+<%= form.text_field :looks, placeholder: '他のユーザーがあなたと分かるような特徴を伝えてあげましょう', class: 'form-control', name: 'workout_schedule[looks]' %>
+<div class="form-group">
+  <%= form.submit '送信', class: 'btn btn-primary mt-2' %>
+</div>

@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_to main_pages_top_path, notice: 'サインインに成功しました。'
+      redirect_to main_path, notice: 'サインインに成功しました。'
     else
       flash.now[:alert] = 'メールアドレスまたはパスワードが間違っています。'
       render :new
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
   def destroy
     logout
     flash[:notice] = 'サインアウトしました。'
-    redirect_to introduction_main_pages_path
+    redirect_to root_path
   end
 end

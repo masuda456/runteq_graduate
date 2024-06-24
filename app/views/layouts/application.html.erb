@@ -1,18 +1,16 @@
+<!-- app/views/layouts/application.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
     <title>RunteqGraduate</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    </head>
-    <body>
+  </head>
+  <body class="<%= controller_name == "introductions" ? "introduction-bg" : "" %>">
     <%= render 'shared/header' %>
-    <%= render 'shared/flash' %>
     <%= yield %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLuHtlbDaUGL2RUoWV4d2akTzNK_zf4Rk&callback=initMap" async defer></script>
   </body>
 </html>
+

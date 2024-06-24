@@ -8,3 +8,18 @@ ja:
         name: 名前
         password: パスワード
         password_confirmation: パスワード確認
+        gender: 性別
+        user_gender_male: 男性
+        user_gender_female: 女性
+        only_same_gender_default: 公開条件のデフォルト設定
+        only_same_gender_default_same_gender: 同性のみに公開
+        only_same_gender_default_all_genders: 性別を問わず公開
+      workout_schedule:
+        only_same_gender: 公開設定(性別)
+        all_genders: 性別を問わず公開
+        same_gender: 同性のみに公開
+    enums:
+      user:
+        gender:
+          male: 男性
+          female: 女性

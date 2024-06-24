@@ -2,6 +2,21 @@ class WorkoutSchedule < ApplicationRecord
   belongs_to :user
   has_many :workout_schedule_details
 
+  enum only_same_gender: { all_genders: 0, same_gender: 1 }
+
+  TARGET_PARTS = {
+    '胸' => :do_chest,
+    '背中' => :do_back,
+    '脚' => :do_leg,
+    '肩' => :do_shoulder,
+    '腕' => :do_arm
+  }.freeze
+
+  ONLY_SAME_GENDER_OPTIONS = {
+    all_genders: "性別を問わず公開",
+    same_gender: "同性のみに公開"
+  }.freeze
+
   def self.create_dummy_by_user(user, exercises)
     workout_schedule = create!(
       user: user,
