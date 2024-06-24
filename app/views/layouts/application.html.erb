@@ -10,7 +10,10 @@
   </head>
   <body class="<%= controller_name == "introductions" ? "introduction-bg" : "" %>">
     <%= render 'shared/header' %>
-    <%= yield %>
+    <div class="container py-5">
+      <%= render 'shared/flash' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
 

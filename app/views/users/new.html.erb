@@ -1,22 +1,20 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6 py-5">
-      <h1>サインアップ</h1>
-      <%= form_with model: @user, local: true do |f| %>
-        <%= render 'users/form_user', f: f, placeholder_pw: "" %>
-        <h3 class="pt-3">BIG3の重量</h3>
-        <div>
-          <% @exercises.each do |exercise| %>
-            <div class="form-group py-2">
-              <%= f.label :"exercise_#{exercise.id}", exercise.name %><br>
-              <%= number_field_tag "user[exercises][#{exercise.id}]", nil, min: 0, step: 1, class: "form-control" %>
-            </div>
-          <% end %>
-        </div>
-        <div>
-          <%= f.submit "登録" , class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
+<div class="row justify-content-center">
+  <div class="col-md-6 py-5">
+    <h1>サインアップ</h1>
+    <%= form_with model: @user, local: true, data: { turbo: false } do |f| %>
+      <%= render 'users/form_user', f: f, placeholder_pw: "" %>
+      <h3 class="pt-3">BIG3の重量</h3>
+      <div>
+        <% @exercises.each do |exercise| %>
+          <div class="form-group py-2">
+            <%= f.label :"exercise_#{exercise.id}", exercise.name %><br>
+            <%= number_field_tag "user[exercises][#{exercise.id}]", nil, min: 0, step: 1, class: "form-control" %>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <%= f.submit "登録" , class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>
