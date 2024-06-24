@@ -20,12 +20,13 @@ class UsersController < ApplicationController
         end
       else
         @exercises = Exercise.all
-        Rails.logger.debug("User save failed: #{@user.errors.full_messages.to_sentence}")
+        flash[:alert] = 'ユーザー登録に失敗しました。'
+        # Rails.logger.debug("User save failed: #{@user.errors.full_messages.to_sentence}")
         render :new
       end
     end
   rescue ActiveRecord::Rollback
-    flash[:error] = 'ユーザー登録に失敗しました。'
+    flash[:alert] = 'ユーザー登録に失敗しました。'
     @exercises = Exercise.all
     raise
     render :new
