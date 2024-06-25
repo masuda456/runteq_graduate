@@ -20,15 +20,17 @@ $(document).ready(function() {
       address = $('#address-search').val();
     }
 
-    $('#mapModal').modal('show'); // モーダルウィンドウを表示
-
     var handleLocation = function(lat, lng) {
       if ($(this).val() == 'create') {
+        console.log($('#date-search').val());
         initMap(lat, lng, 'ジム');
+        $('#mapModal').modal('show'); // モーダルウィンドウを表示
       } else if ($(this).val() == 'search') {
         if($('#date-search').val() != ''){
-          console.log($('#date-search').val());
           searchMap(lat, lng, $('#date-search').val(), current_user_gender);
+          $('#mapModal').modal('show'); // モーダルウィンドウを表示
+        }else{
+          alert('他のユーザーの予定を検索する場合は、日付を指定してください。');
         }
       }
     }.bind(this);
@@ -62,6 +64,8 @@ $(document).ready(function() {
 });
 
 function initMap(lat, lng, keyword) {
+  console.log('called initMap');
+
   CustomInfoWindow.prototype = new google.maps.OverlayView();
 
   CustomInfoWindow.prototype.onAdd = function() {
@@ -170,7 +174,6 @@ function conversionLocation(address, callback) {
   geocoder.geocode({ 'address': address }, function(results, status) {
     if (status === 'OK') {
       var location = results[0].geometry.location;
-      console.log('Geocode successful:', location); // デバッグ用ログ
       callback(location.lat(), location.lng());
     } else {
       console.error('Geocode was not successful for the following reason: ' + status);
@@ -197,6 +200,7 @@ function getCurrentLocation(callback) {
 }
 
 function searchMap(lat, lng, date, current_user_gender) {
+
   CustomInfoWindow.prototype = new google.maps.OverlayView();
 
   CustomInfoWindow.prototype.onAdd = function() {
