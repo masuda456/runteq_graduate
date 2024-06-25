@@ -22,6 +22,7 @@ class WorkoutSchedule < ApplicationRecord
   def self.create_dummy_by_user(user, exercises)
     workout_schedule = create!(
       user: user,
+      googlemap_place_id, 'initial dummy schedule'
       start_at: DateTime.new(1900, 1, 1, 0, 0, 0),
       finish_at: DateTime.new(1900, 1, 1, 0, 0, 1),
       do_leg: 0,
