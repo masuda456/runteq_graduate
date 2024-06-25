@@ -10,7 +10,7 @@
 <%= form.hidden_field :googlemap_place_lat, id: 'googlemap_place_lat', name: 'workout_schedule[googlemap_place_lat]' %>
 <%= form.hidden_field :googlemap_place_lng, id: 'googlemap_place_lng', name: 'workout_schedule[googlemap_place_lng]' %>
 <div class="input-group mb-3">
-  <%= form.text_field :googlemap_place_name, id: 'googlemap_place_name', class: 'form-control me-3', name: 'workout_schedule[googlemap_place_name]' %>
+  <%= form.text_field :googlemap_place_name, id: 'googlemap_place_name', class: 'form-control me-3', name: 'workout_schedule[googlemap_place_name]', required: true, readonly: true %>
   <div class="input-group-append">
     <%= button_tag '地図を再表示', type: 'button', id: 'show-map', class: 'btn btn-secondary', data: { toggle: 'modal', target: '#mapModal' } %>
   </div>
@@ -50,7 +50,7 @@
   </div>
 </div>
 <%= form.label :looks, '外見的特徴など', class: 'form-label' %>
-<%= form.text_field :looks, placeholder: '当日に他のユーザーがあなたと分かるような特徴を伝えてあげましょう', class: 'form-control', name: 'workout_schedule[looks]' %>
+<%= form.text_field :looks, placeholder: '当日に他のユーザーがあなたと分かるような特徴を伝えてあげましょう', class: 'form-control', name: 'workout_schedule[looks]', required: true %>
 <div class="form-group">
   <%= form.submit '送信', class: 'btn btn-primary mt-2' %>
 </div>

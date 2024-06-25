@@ -4,6 +4,8 @@ class WorkoutSchedule < ApplicationRecord
 
   enum only_same_gender: { all_genders: 0, same_gender: 1 }
 
+  validates :googlemap_place_id, presence: true
+
   TARGET_PARTS = {
     '胸' => :do_chest,
     '背中' => :do_back,
