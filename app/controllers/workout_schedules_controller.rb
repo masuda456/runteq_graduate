@@ -4,6 +4,12 @@ class WorkoutSchedulesController < ApplicationController
 
   def create
     begin
+
+      if params[:date].blank?
+        flash[:alert] = '日付が入力されていません。'
+        redirect_to new_workout_schedule_path and return
+      end
+
       formatted_params = format_params(params)
 
       formatted_params[:user_id] = current_user.id

@@ -38,6 +38,16 @@ $(document).ready(function() {
     } else {
       getCurrentLocation(handleLocation);
     }
+
+    // 地図オブジェクトがロードされているか確認し、されていない場合はエラーメッセージを表示
+    setTimeout(function() {
+      var isMapLoaded = typeof google !== 'undefined' && google.maps && document.getElementById('map');
+      if (!isMapLoaded) {
+        $('#map-error-message').show();
+      } else {
+        $('#map-error-message').hide();
+      }
+    }, 1000); // 1秒待ってからチェック
   });
 
   // 地図を非表示にする
