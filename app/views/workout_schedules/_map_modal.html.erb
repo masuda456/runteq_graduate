@@ -2,13 +2,14 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="mapModalLabel">ジムを検索</h5>
+        <h5 class="modal-title" id="mapModalLabel">ジムを検索<span class="fs-6">(地図が表示されない場合は一度画面を更新してください)</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div id="map" style="height: 500px; width: 100%;"></div>
       </div>
       <div class="modal-footer">
+        <p id="map-error-message" style="display: none; color: red;">地図が表示されない場合は一度画面を更新してください。</p>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
       </div>
     </div>
