@@ -8,9 +8,19 @@ class UsersController < ApplicationController
   end
 
   def create
+
     user_exercises = params[:user].delete(:exercises)
+    @user = User.new(user_params)
+    @exercises = Exercise.all
+
+    unless validate_exercises(user_exercises)
+      @exercises = Exercise.all
+      flash[:alert] = '全てのBIG3の重量を入力してください。'
+      @validate_exercises = true
+      return render :new
+    end
+
     ActiveRecord::Base.transaction do
-      @user = User.new(user_params)
       if @user.save
         auto_login(@user)
         if WorkoutSchedule.create_dummy_by_user(@user, user_exercises)
@@ -27,8 +37,6 @@ class UsersController < ApplicationController
     end
   rescue ActiveRecord::Rollback
     flash[:alert] = 'ユーザー登録に失敗しました。'
-    @exercises = Exercise.all
-    raise
     render :new
   end
 
@@ -39,6 +47,10 @@ class UsersController < ApplicationController
 
   def update
     user_exercises = params[:user].delete(:exercises)
+
+    @workout_schedule = @user.workout_schedules.first
+    @workout_schedule_details = @workout_schedule.workout_schedule_details.order(:exercise_id) if @workout_schedule.present?
+
     ActiveRecord::Base.transaction do
       if @user.update(user_params_for_update)
         user_exercises.each do |id, one_rep_max_theoretical|
@@ -47,9 +59,9 @@ class UsersController < ApplicationController
             raise ActiveRecord::Rollback
           end
         end
-        redirect_to @user, notice: 'プロフィールが更新されました。'
+        flash[:notice] = 'プロフィールが更新されました。'
+        render :edit
       else
-        @workout_schedule = @user.workout_schedules.first
         render :edit
       end
     end
@@ -77,5 +89,9 @@ class UsersController < ApplicationController
         user_params.delete(:password_confirmation)
       end
     end
+  end
+
+  def validate_exercises(exercises)
+    exercises.present? && exercises.values.all?(&:present?)
   end
 end

@@ -18,8 +18,8 @@ ja:
       title: ユーザー登録
       to_login_page: ログインページへ
   header:
-    login: ログイン
-    logout: ログアウト
+    login: サインイン
+    logout: サインアウト
     board: 掲示板
     board_index: 掲示板一覧
     create_board: 掲示板作成

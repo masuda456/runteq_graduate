@@ -9,10 +9,10 @@
               <%= current_user.name %>
             </span>
             <%= link_to t('プロフィール設定'), edit_user_path(current_user), class: 'btn btn-link nav-item' %>
-            <%= link_to t('サインアウト'), logout_path, data: { turbo_method: :delete }, class: 'btn btn-link nav-item' %>
+            <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: 'btn btn-link nav-item' %>
           <% else %>
-            <%= link_to t('サインイン'), login_path, class: 'btn btn-link nav-item' %>
-            <%= link_to t('サインアップ'), new_user_path, class: 'btn btn-link nav-item' %>
+            <%= link_to t('header.login'), login_path, class: 'btn btn-link nav-item' %>
+            <%= link_to t('header.logout'), new_user_path, class: 'btn btn-link nav-item' %>
           <% end %>
         </li>
       </ul>
