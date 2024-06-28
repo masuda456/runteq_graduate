@@ -27,11 +27,6 @@
   position: absolute !important;
 }
 
-.radio-inline__input {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-}
-
 .radio-inline__label {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -52,4 +47,32 @@
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
+}
+
+/* 画像の高さをデフォルトで100に設定 */
+.navbar-brand img {
+  height: 100px;
+}
+
+@media (max-width: 767px) {
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .form-check {
+    padding-left: 0 !important;
+  }
+
+  .radio-inline__label {
+    margin-right: 0 !important;
+  }
+
+  /* 最初の.form-check-inlineのmargin-rightを0に設定 */
+  .form-check-inline {
+    margin-right: 0;
+  }
+
+  .form-check-inline:first-child {
+    margin-right: 5px !important;
+  }
 }

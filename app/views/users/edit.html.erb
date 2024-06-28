@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-md-6 py-5">
-    <h1>プロフィール編集</h1>
+    <h1><%= t('header.user.edit') %></h1>
     <%= form_with model: @user, local: true, data: { turbo: false } do |f| %>
       <%= render 'users/form_user', f: f, placeholder_pw: "パスワードを変更する場合のみ入力してください" %>
       <h3>BIG3の重量</h3>
