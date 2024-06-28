@@ -6,3 +6,9 @@ ja:
           attributes:
             email:
               taken: "このメールアドレスは既に登録されています"
+              blank: "メールアドレスは必須です"
+            password:
+              too_short: "パスワードが短すぎます"
+            password_confirmation:
+              confirmation: "パスワードと一致しません"
+              blank: "パスワード確認が空白です"

@@ -1,18 +1,22 @@
 <div class="form-group py-2">
   <%= f.label :email %><br>
   <%= f.email_field :email, class: "form-control" %>
+  <%= error_message_for(f.object, :email) %>
 </div>
 <div class="form-group py-2">
   <%= f.label :name %><br>
   <%= f.text_field :name, class: "form-control" %>
+  <%= error_message_for(f.object, :name) %>
 </div>
 <div class="form-group py-2">
   <%= f.label :password %><br>
-  <%= f.password_field :password, class: "form-control", placeholder: placeholder_pw %>
+  <%= f.password_field :password, class: "form-control", placeholder: placeholder_pw, autocomplete: false %>
+  <%= error_message_for(f.object, :password) %>
 </div>
 <div class="form-group py-2">
   <%= f.label :password_confirmation %><br>
   <%= f.password_field :password_confirmation, class: "form-control" %>
+  <%= error_message_for(f.object, :password_confirmation) %>
 </div>
 <div class="form-group py-2">
   <%= f.label :gender %><br>
@@ -22,6 +26,7 @@
     <%= f.radio_button :gender, :female, class: "btn-check"  %>
     <%= f.label :female, class: "btn btn-outline-danger", for: "user_gender_female" %>
   </div>
+  <%= error_message_for(f.object, :gender) %>
 </div>
 <div class="form-group py-2">
   <%= f.label :only_same_gender_default %><br>
@@ -31,4 +36,5 @@
     <%= f.radio_button :only_same_gender_default, :all_genders, class: "btn-check" %>
     <%= f.label :only_same_gender_default_all_genders, class: "btn btn-outline-secondary" %>
   </div>
+  <%= error_message_for(f.object, :only_same_gender_default) %>
 </div>
