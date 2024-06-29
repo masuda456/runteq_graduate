@@ -6,8 +6,6 @@ class WorkoutSchedule < ApplicationRecord
 
   validates :googlemap_place_id, presence: true
 
-  validate :start_at_must_be_in_the_future, unless: :skip_future_date_validation
-
   attr_accessor :skip_future_date_validation
 
   TARGET_PARTS = {
