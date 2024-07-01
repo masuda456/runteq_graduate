@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title mt-2">予定の詳細</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <% WorkoutSchedule::DISPLAY_COLUMNS.each do |column| %>
+            <li class="list-group-item">
+              <div class="d-flex flex-column flex-md-row">
+                <strong class="me-2"><%= WorkoutSchedule.human_attribute_name(column) %>:</strong>
+                <span>
+                  <% if @workout_schedule.send(column).is_a?(Time) %>
+                    <%= l(@workout_schedule.send(column), format: :default) %>
+                  <% else %>
+                    <%= @workout_schedule.send(column).present? ? @workout_schedule.send(column).to_s : 'N/A' %>
+                  <% end %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+          <li class="list-group-item">
+            <div class="d-flex flex-column flex-md-row">
+              <strong class="me-2">予定部位:</strong>
+              <span>
+                <% WorkoutSchedule::TARGET_PARTS.each do |japanese_name, column| %>
+                  <% if @workout_schedule.send(column) %>
+                    <%= japanese_name %>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer text-end">
+        <%= link_to t('helpers.submit.edit'), edit_workout_schedule_path(@workout_schedule), class: 'btn btn-primary' %>
+        <%= link_to t('helpers.submit.back'), workout_schedules_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

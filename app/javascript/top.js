@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(function() {
   var current_user_gender = window.currentUser ? window.currentUser.gender : null;
 
   // ワークアウトの予定の登録と検索の切り替え
-  $('.workout-option').change(function() {
+  $('.workout-option').on('change', function() {
     if ($('#searchWorkout').is(':checked')) {
       $('#search-WorkoutSchedules-form').show();
       $('#create-WorkoutSchedules-form').hide();
@@ -12,7 +12,7 @@ $(document).ready(function() {
     }
   });
 
-  $('.map-request').click(function() {
+  $('.map-request').on('click', function() {
     var address = '';
     if ($(this).val() == 'create') {
       address = $('#address').val();
@@ -53,12 +53,12 @@ $(document).ready(function() {
   });
 
   // 地図を非表示にする
-  $('#close-modal').click(function() {
+  $('#close-modal').on('click', function() {
     $('#mapModal').modal('hide'); 
   });
 
   // 地図を再表示する
-  $('#show-map').click(function() {
+  $('#show-map').on('click', function() {
     $('#mapModal').modal('show'); 
   });
 });

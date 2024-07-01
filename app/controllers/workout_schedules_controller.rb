@@ -42,7 +42,7 @@ class WorkoutSchedulesController < ApplicationController
 
   def search
     date = params[:date]
-    @workout_schedules = WorkoutSchedule.includes(:user).where.not(googlemap_place_id: nil)
+    @workout_schedules = WorkoutSchedule.includes(:user).where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
                                         .where('start_at LIKE ? OR finish_at LIKE ?', "%#{date}%", "%#{date}%")
                                         .where.not(user_id: current_user.id)
 
@@ -56,6 +56,39 @@ class WorkoutSchedulesController < ApplicationController
         })
       end
     end
+  end
+
+  def index
+    @workout_schedules = WorkoutSchedule.includes(:user)
+                                        .where(user_id: current_user.id)
+                                        .where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
+                                        .order(start_at: :desc)
+                                        .limit(WorkoutSchedule::INITIAL_LOAD_COUNT)
+    @total_count = WorkoutSchedule.where(user_id: current_user.id)
+                                  .where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
+                                  .count
+  end
+
+  def load_more
+    offset = params[:offset].to_i
+    @workout_schedules = WorkoutSchedule.includes(:user)
+                                        .where(user_id: current_user.id)
+                                        .where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
+                                        .order(start_at: :desc)
+                                        .offset(offset)
+                                        .limit(WorkoutSchedule::LOAD_MORE_COUNT)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def show
+    @workout_schedule = WorkoutSchedule.find(params[:id])
+  end
+
+  def edit
+    raise
   end
 
   private

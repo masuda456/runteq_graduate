@@ -1,0 +1,14 @@
+<div class="workout-schedule py-3">
+  <h3 class="pb-2">
+    <%= link_to workout_schedule.googlemap_place_name || 'Not specified', workout_schedule_path(workout_schedule) %>
+  </h3>
+  <p><strong>時間:</strong> <%= workout_schedule.start_at.strftime('%Y-%m-%d %H:%M') + ' 〜 ' + workout_schedule.finish_at.strftime('%H:%M') %></p>
+  <p><strong>予定部位:</strong>
+  <% WorkoutSchedule::TARGET_PARTS.each do |japanese_name, column| %>
+    <% if workout_schedule.send(column) %>
+      <%= japanese_name %>
+    <% end %>
+  <% end %>
+  </p>
+</div>
+

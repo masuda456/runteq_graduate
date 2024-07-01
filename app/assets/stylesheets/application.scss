@@ -59,7 +59,7 @@
     height: 60px;
   }
 
-  .form-check {
+  .switch-btn {
     padding-left: 0 !important;
   }
 
@@ -74,5 +74,9 @@
 
   .form-check-inline:first-child {
     margin-right: 5px !important;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 10px; /* 縦並び時のマージン調整 */
   }
 }

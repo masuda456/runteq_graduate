@@ -15,11 +15,10 @@ Rails.application.routes.draw do
   # スケジュール
   get 'main', to: 'workout_schedules#new'
 
-  resources :workout_schedules, only: [:create]
-
   resources :workout_schedules do
     collection do
       get :search
+      get :load_more
     end
   end
 

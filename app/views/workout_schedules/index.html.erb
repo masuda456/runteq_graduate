@@ -1,0 +1,17 @@
+<div class="row justify-content-center" id="workout-schedules-container">
+  <% if @workout_schedules.any? %>
+    <%= render partial: 'workout_schedule', collection: @workout_schedules %>
+  <% else %>
+    <p>予定が取得できませんでした</p>
+  <% end %>
+</div>
+<% if @workout_schedules.any? && @total_count > @workout_schedules.size %>
+  <div class="row p-2 my-3">
+    <button class="btn btn-outline-secondary" id="load-more">追加で読み込み</button>
+  </div>
+<% end %>
+<div id="data-container" 
+     data-total-count="<%= @total_count %>" 
+     data-initial-load-count="<%= WorkoutSchedule::INITIAL_LOAD_COUNT %>" 
+     data-load-more-count="<%= WorkoutSchedule::LOAD_MORE_COUNT %>"></div>
+<%= javascript_include_tag 'workout_schedules', defer: true %>

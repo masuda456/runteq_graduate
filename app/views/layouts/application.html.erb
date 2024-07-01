@@ -10,7 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="<%= controller_name == "introductions" ? "introduction-bg" : "" %>">
-    <%= render 'shared/header' %>
+    <%= render 'shared/menu_pc' %>
+    <%= render 'shared/menu_sm' %>
     <div class="container py-5">
       <%= render 'shared/flash' %>
       <%= yield %>

@@ -1,0 +1,4 @@
+<% if @workout_schedules.size < 3 %>
+  $('#load-more').hide();
+<% end %>
+$('#workout-schedules-container').append('<%= j render partial: "workout_schedule", collection: @workout_schedules %>');

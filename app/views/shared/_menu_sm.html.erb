@@ -1,0 +1,33 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <% if logged_in? %>
+        <li class="nav-item mb-2">
+          <span class="navbar-text">
+            <%= current_user.name %>
+          </span>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('header.user.edit'), edit_user_path(current_user), class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('header.schedules'), workout_schedules_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to t('header.login'), login_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('header.user.new'), new_user_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

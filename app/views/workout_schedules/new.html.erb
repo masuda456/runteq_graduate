@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
   <%= form_with model: @workout_schedule, url: workout_schedules_path, method: :post, local: true do |form| %>
     <div class="d-flex justify-content-center mb-3">
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline switch-btn">
         <%= form.radio_button :workout_option, 'register', id: 'registerWorkout', class: 'form-check-input workout-option radio-inline__input' %>
         <%= form.label :workout_option, 'ワークアウトの予定を登録', for: 'registerWorkout', class: 'form-check-label radio-inline__label' %>
       </div>
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline switch-btn">
         <%= form.radio_button :workout_option, 'search', id: 'searchWorkout', class: 'form-check-input workout-option radio-inline__input' %>
         <%= form.label :workout_option, 'ワークアウトの予定を検索', for: 'searchWorkout', class: 'form-check-label radio-inline__label' %>
       </div>

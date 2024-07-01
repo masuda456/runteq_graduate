@@ -15,9 +15,13 @@ ja:
         only_same_gender_default_same_gender: 同性のみに公開
         only_same_gender_default_all_genders: 性別を問わず公開
       workout_schedule:
+        googlemap_place_name: 施設名
+        start_at: 開始時刻
+        finish_at: 終了時刻
         only_same_gender: 公開設定(性別)
         all_genders: 性別を問わず公開
         same_gender: 同性のみに公開
+        looks: 当日の外見等
     enums:
       user:
         gender:

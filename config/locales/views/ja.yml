@@ -6,11 +6,14 @@ ja:
       update: 更新
       search: 検索
       close: 閉じる
+      edit: 編集
+      back: 戻る
     attention:
       retry_get_google_map_object: 地図が表示されない場合は一度画面を更新してください 
   header:
     login: サインイン
     logout: サインアウト
+    schedules: 予定一覧
     user:
       new: サインアップ
       edit: プロフィール設定
