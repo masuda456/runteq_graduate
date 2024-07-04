@@ -3,7 +3,12 @@
     <h1><%= t('header.user.new') %></h1>
     <%= form_with model: @user, local: true, data: { turbo: false } do |f| %>
       <%= render 'users/form_user', f: f, placeholder_pw: "" %>
-      <h3 class="pt-3">BIG3の重量</h3>
+      <div class="d-flex justify-content-between">
+        <h3 class="pt-2">BIG3の重量</h3>
+        <button type="button" class="btn btn-link ms-2" onclick="alert('マッチングする際の参考情報としておおよその扱える重量を登録してください。')">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
       <%= @validate_exercises ? '<div class="text-danger">BIG3の重量を設定してください</div>' : "" %>
       <div>
         <% @exercises.each do |exercise| %>

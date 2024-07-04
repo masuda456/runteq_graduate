@@ -1,5 +1,6 @@
 @import "bootstrap";
 // @import "bootstrap-icons/font/bootstrap-icons";
+@import 'font-awesome';
 
 .introduction-bg {
   margin: 0;
@@ -101,6 +102,10 @@
 
 .margin-clear {
   margin: 0 0 0 0;
+}
+
+.padding-clear {
+  padding: 0 0 0 0;
 }
 
 @media (max-width: 767px) {

@@ -29,7 +29,12 @@
   <%= error_message_for(f.object, :gender) %>
 </div>
 <div class="form-group py-2">
-  <%= f.label :only_same_gender_default %><br>
+  <div class="d-flex justify-content-between">
+  <%= f.label :only_same_gender_default %>
+  <button type="button" class="btn btn-link ms-2 padding-clear " onclick="alert('ワークアウトの予定を登録する際にの公開設定の初期値を設定できます。同性のみに公開にすると異性の他のユーザーからはあなたの予定は検索で見つからなくなります。')">
+    <i class="fas fa-question-circle"></i>
+  </button>
+  </div>
   <div class="btn-group">
     <%= f.radio_button :only_same_gender_default, :same_gender, class: "btn-check" %>
     <%= f.label :only_same_gender_default_same_gender, class: "btn btn-outline-secondary" %>
