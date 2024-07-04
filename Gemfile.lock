@@ -146,6 +146,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.21.0)
+      actionpack (>= 6.0.0, < 7.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.24.0)
@@ -301,6 +303,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
+  meta-tags
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)

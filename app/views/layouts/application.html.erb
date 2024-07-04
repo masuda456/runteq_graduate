@@ -5,24 +5,25 @@
     <title>RunteqGraduate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- OGPメタタグの設定 -->
-    <meta property="og:title" content="OK!合トレ">
+    <%# <meta property="og:title" content="OK!合トレ">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.ok-go-training.site">
     <meta property="og:image" content="https://www.ok-go-training.site/path/to/og-image.jpg">
     <meta property="og:description" content="最後の1repで補助がいてくれたら、互いに競争心を利用してより強度の高いトレーニングに打ち込みたい…ジムでトレーニングをする時に、トレーニングパートナーがいてくれたらと思うことはありませんか？しかし多くのジムでは、知らない人に声をかけることはマナー違反ですし、仮にマナー違反ではなくとも誰かに「一緒にトレーニングしませんか？」と声をかけることはとても勇気がいることです。OK! 合トレでは、トレーニングの予定を立ててそれを公開することにより「別に一緒にやってもいいよ」という意思表示を互いに表明しあうことにより、トレーニングに誘う、誘われるハードルを下げることを目的としたサービスです。">
     <meta property="og:site_name" content="OK!合トレ">
-    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale" content="ja_JP"> %>
 
     <!-- Twitterカードの設定（任意） -->
-    <meta name="twitter:card" content="summary_large_image">
+    <%# <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@RUNTEQ50aKoike">
     <meta name="twitter:title" content="OK!合トレ">
     <meta name="twitter:description" content="「別に一緒にやってもいいよ」という意思表示を互いに表明しあうことにより、トレーニングに誘う、誘われるハードルを下げることを目的としたサービスです。">
-    <meta name="twitter:image" content="https://www.ok-go-training.site/path/to/og-image.jpg">
+    <meta name="twitter:image" content="https://www.ok-go-training.site/path/to/og-image.jpg"> %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
   <body class="<%= controller_name == "introductions" ? "introduction-bg" : "" %>">
     <%= render 'shared/menu_pc' %>
