@@ -36,7 +36,11 @@
       </div>
       <div class="card-footer text-end">
         <%= link_to t('helpers.submit.edit'), edit_workout_schedule_path(@workout_schedule), class: 'btn btn-primary' %>
-        <%= link_to t('helpers.submit.back'), workout_schedules_path, class: 'btn btn-secondary' %>
+        <% if @from_calendar %>
+          <%= link_to t('helpers.submit.back'), workout_schedule_calendar_path(month: @date[0..6]), class: 'btn btn-secondary' %>
+        <% else %>
+          <%= link_to t('helpers.submit.back'), workout_schedules_path(date: @date), class: 'btn btn-secondary' %>
+        <% end %>
       </div>
     </div>
   </div>

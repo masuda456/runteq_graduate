@@ -59,14 +59,32 @@ class WorkoutSchedulesController < ApplicationController
   end
 
   def index
+    date = Date.parse(params[:date])
     @workout_schedules = WorkoutSchedule.includes(:user)
                                         .where(user_id: current_user.id)
                                         .where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
+                                        .where(start_at: date.beginning_of_day..date.end_of_day)
                                         .order(start_at: :desc)
                                         .limit(WorkoutSchedule::INITIAL_LOAD_COUNT)
     @total_count = WorkoutSchedule.where(user_id: current_user.id)
                                   .where.not(googlemap_place_id: WorkoutSchedule::DUMMY_PLACE_ID)
+                                  .where(start_at: date.beginning_of_day..date.end_of_day)
                                   .count
+    @date = date.strftime('%Y-%m-%d')
+  end
+
+  def calendar
+    if params[:month]
+      @current_date = Date.parse("#{params[:month]}-01")
+    else
+      @current_date = Date.today.beginning_of_month
+    end
+
+    start_date = @current_date.beginning_of_month
+    end_date = @current_date.end_of_month
+    @grouped_schedules = WorkoutSchedule.where(start_at: start_date..end_date).group("DATE(start_at)").count.keys.map do |date|
+      { date => WorkoutSchedule.where("DATE(start_at) = ?", date).to_a }
+    end
   end
 
   def load_more
@@ -85,6 +103,10 @@ class WorkoutSchedulesController < ApplicationController
 
   def show
     @workout_schedule = WorkoutSchedule.find(params[:id])
+    @date = @workout_schedule.start_at.strftime('%Y-%m-%d')
+
+    referer = URI(request.referer || '')
+    @from_calendar = referer.path == workout_schedule_calendar_path
   end
 
   def edit

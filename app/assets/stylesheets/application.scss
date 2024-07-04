@@ -54,6 +54,55 @@
   height: 100px;
 }
 
+.calendar {
+  width: 100%;
+  margin: auto;
+  padding: 0 15px; /* スマホでの左右余白を追加 */
+}
+.calendar-header, .calendar-body {
+  width: 100%;
+}
+.calendar-header .row, .calendar-body .row {
+  display: flex;
+  justify-content: space-between;
+}
+.calendar-header .col, .calendar-body .col {
+  flex: 1;
+  text-align: center;
+}
+.date {
+  font-weight: bold;
+}
+.workout {
+  font-size: 0.8em;
+}
+.text-muted {
+  color: #6c757d;
+}
+.calendar-body .row {
+  flex-wrap: nowrap;
+}
+.calendar-body .col {
+  min-height: 100px;
+}
+.text-primary {
+  color: #007bff !important; /* 土曜日を青に */
+}
+.text-danger {
+  color: #dc3545 !important; /* 日曜日を赤に */
+}
+/* スマホ用 */
+.desktop-only {
+  display: none;
+}
+.mobile-only {
+  display: block;
+}
+
+.margin-clear {
+  margin: 0 0 0 0;
+}
+
 @media (max-width: 767px) {
   .navbar-brand img {
     height: 60px;
@@ -78,5 +127,14 @@
 
   .navbar-nav .nav-item {
     margin-bottom: 10px; /* 縦並び時のマージン調整 */
+  }
+}
+/* デスクトップ用 */
+@media (min-width: 768px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
   }
 }

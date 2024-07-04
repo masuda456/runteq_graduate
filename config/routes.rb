@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   # ユーザー
   resources :users, only: [:new, :create, :edit, :update]
 
+  get 'workout_schedule_calendar', to: 'workout_schedules#calendar'
+
   # スケジュール
   get 'main', to: 'workout_schedules#new'
 
