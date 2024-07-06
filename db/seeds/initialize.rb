@@ -1,10 +1,10 @@
 # db/seeds/initialize.rb
 
 # テーブルのトランケート（全削除）
-user_count = User.destroy_all.size
-exercise_count = Exercise.destroy_all.size
 workout_schedule_detail_count = WorkoutScheduleDetail.destroy_all.size
 workout_schedule_count = WorkoutSchedule.destroy_all.size
+exercise_count = Exercise.destroy_all.size
+user_count = User.destroy_all.size
 
 # オートインクリメントをリセット
 ActiveRecord::Base.connection.execute("ALTER TABLE users AUTO_INCREMENT = 1")

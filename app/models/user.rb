@@ -1,9 +1,12 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_many :authentications, :dependent => :destroy
   has_many :workout_schedules
   has_many :workout_schedule_details, through: :workout_schedules
-  has_and_belongs_to_many :exercises
+  # has_and_belongs_to_many :exercises
+
+  accepts_nested_attributes_for :authentications
 
   enum gender: { unknown: 0, male: 1, female: 2 }
   enum only_same_gender_default: { all_genders: 0, same_gender: 1 }

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+  get 'oauths/callback'
 
   root 'introductions#show'
 
@@ -6,8 +8,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
-  # { turbo_method: :delete } って書いても何故かgetされる、これ以上時間かけられないので一旦getでログアウト処理をルーティング
-  # get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  # シングルサインオン
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback"
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   # ユーザー
   resources :users, only: [:new, :create, :edit, :update]

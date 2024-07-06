@@ -15,6 +15,11 @@
       <div class="form-group text-center py-2">
         <%= f.submit "ログイン", class: "btn btn-primary" %>
       </div>
+      <div class="text-center py-3">
+        <%= link_to auth_at_provider_path(provider: :google), class: "btn btn-outline-secondary" do %>
+          <i class="fa-brands fa-google"></i> Login with Google account
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
