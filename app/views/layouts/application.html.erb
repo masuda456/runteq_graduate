@@ -3,6 +3,7 @@
   <head prefix="og: https://ogp.me/ns#">
     <meta charset="UTF-8">
     <title>RunteqGraduate</title>
+    <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,6 +18,16 @@
       <%= render 'shared/flash' %>
       <%= yield %>
     </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
+      }
+    </script>
   </body>
 </html>
 

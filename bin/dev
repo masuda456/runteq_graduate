@@ -1,0 +1,14 @@
+set -e
+
+# Ensure latest version of gems
+bundle check || bundle install
+
+# Ensure latest version of node modules
+yarn install --check-files
+
+# Run SSL
+if [ -f tmp/pids/server.pid ]; then
+  rm tmp/pids/server.pid
+fi
+
+bin/rails s -b 'ssl://localhost:3000?key=config/ssl/localhost-key.pem&cert=config/ssl/localhost.pem'
