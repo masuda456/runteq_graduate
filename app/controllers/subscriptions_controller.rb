@@ -2,6 +2,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions or /subscriptions.json
   def create
     subscription = Subscription.new(subscription_params)
+    subscription.user = current_user if user_signed_in?
 
     if subscription.save
       render json: { status: :ok }
