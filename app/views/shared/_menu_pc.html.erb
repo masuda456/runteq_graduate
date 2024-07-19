@@ -4,7 +4,9 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <% if logged_in? %>
     <button data-controller="subscribe" data-action="click->subscribe#subscribe">Subscribe</button>
+    <% end %>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto d-none d-lg-flex">
         <% if logged_in? %>
