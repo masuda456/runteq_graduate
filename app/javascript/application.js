@@ -24,10 +24,11 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Base64 URLをUint8Arrayに変換する関数
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
   for (let i = 0; i < rawData.length; ++i) {
@@ -36,41 +37,31 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-// Push通知のサブスクリプション
 function subscribeUserToPush(registration) {
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array('BAD2vsi8pwGL0SLmyMUjhyaGAEXP0GKZT2exQp7f6EOlToqhCm9qDLNPPyg6TssGrOS_g6cSkAJ0zKQklOJL7LE')
+    applicationServerKey: urlBase64ToUint8Array('YOUR_PUBLIC_KEY')
   };
 
   registration.pushManager.subscribe(subscribeOptions)
     .then(function(pushSubscription) {
       console.log('Received PushSubscription:', JSON.stringify(pushSubscription));
-      fetch('/notifications/subscribe', {
+      return fetch('/notifications/subscribe', {
         method: 'POST',
-        body: JSON.stringify(pushSubscription),
         headers: {
           'Content-Type': 'application/json'
-        }
-      }).then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      }).then(data => {
-        console.log('Subscription successful:', data);
-      }).catch(function(error) {
-        console.error('Failed to subscribe the user: ', error);
-        if (error.name) {
-          console.error('Error name:', error.name);
-        }
-        if (error.message) {
-          console.error('Error message:', error.message);
-        }
-        if (error.stack) {
-          console.error('Error stack:', error.stack);
-        }
+        },
+        body: JSON.stringify(pushSubscription)
       });
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Subscription successful:', data);
     })
     .catch(function(error) {
       console.error('Failed to subscribe the user: ', error);
