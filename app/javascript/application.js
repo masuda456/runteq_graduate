@@ -27,9 +27,13 @@ if ('serviceWorker' in navigator) {
 // Base64 URLをUint8Arrayに変換する関数
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
+
   for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
@@ -46,13 +50,17 @@ function subscribeUserToPush(registration) {
   registration.pushManager.subscribe(subscribeOptions)
     .then(function(pushSubscription) {
       console.log('Received PushSubscription:', JSON.stringify(pushSubscription));
-      
+
+      if (!pushSubscription.keys || !pushSubscription.keys.p256dh || !pushSubscription.keys.auth) {
+        throw new Error('PushSubscription keys are missing or undefined');
+      }
+
       const query = new URLSearchParams({
         endpoint: pushSubscription.endpoint,
         p256dh: pushSubscription.keys.p256dh,
         auth: pushSubscription.keys.auth
       }).toString();
-      
+
       return fetch(`/notifications/subscribe?${query}`, {
         method: 'GET'
       });
