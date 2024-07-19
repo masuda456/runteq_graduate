@@ -17,7 +17,7 @@ export default class extends Controller {
         if (permission === "granted") {
           const subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array("YOUR_PUBLIC_VAPID_KEY")
+            applicationServerKey: urlBase64ToUint8Array("BNFQW8D0D_iGfNze8OI_6vgrGIcLNusOHDIRPqs8ex1HAqtJhy1uKoe0-hnB-7THPHZjYGkVzDUQtQYYbgsbYgQ=")
           })
 
           const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
