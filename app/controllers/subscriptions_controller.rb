@@ -6,7 +6,8 @@ class SubscriptionsController < ApplicationController
     if subscription.save
       render json: { status: :ok }
     else
-      render json: { status: :unprocessable_entity }
+      Rails.logger.error subscription.errors.full_messages
+      render json: { status: :unprocessable_entity, errors: subscription.errors.full_messages }
     end
   end
 
