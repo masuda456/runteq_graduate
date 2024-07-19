@@ -8,8 +8,7 @@ class NotificationsController < ApplicationController
       Webpush.payload_send(
         message: {
           title: 'Push Notification',
-          body: 'You have a new message!',
-          icon: '/images/icons/icon-192x192.png'
+          body: 'You have a new message!'
         }.to_json,
         endpoint: subscription['endpoint'],
         p256dh: subscription['keys']['p256dh'],
