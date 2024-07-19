@@ -18,13 +18,17 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener("push", event => {
-  const data = event.data.json()
-  console.log("Push received:", data)
-  const options = {
-    body: data.body,
-    badge: data.badge
+  if (event.data) {
+    const data = event.data.json();
+    console.log("Push received:", data);
+    const options = {
+      body: data.body,
+      badge: data.badge
+    };
+    event.waitUntil(
+      self.registration.showNotification(data.title, options)
+    );
+  } else {
+    console.log("Push event but no data");
   }
-  event.waitUntil(
-    self.registration.showNotification(data.title, options)
-  )
 });
