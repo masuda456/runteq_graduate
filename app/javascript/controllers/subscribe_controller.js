@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
@@ -7,7 +7,6 @@ export default class extends Controller {
 
   subscribe(event) {
     event.preventDefault()
-    // サブスクリプション処理をここに記述する
     console.log("Subscribed!")
   }
 }
