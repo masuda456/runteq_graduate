@@ -40,7 +40,7 @@ function urlBase64ToUint8Array(base64String) {
 function subscribeUserToPush(registration) {
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array('YOUR_PUBLIC_KEY')
+    applicationServerKey: urlBase64ToUint8Array('BAD2vsi8pwGL0SLmyMUjhyaGAEXP0GKZT2exQp7f6EOlToqhCm9qDLNPPyg6TssGrOS_g6cSkAJ0zKQklOJL7LE')
   };
 
   registration.pushManager.subscribe(subscribeOptions)
