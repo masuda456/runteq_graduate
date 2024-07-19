@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
     begin
       subscription = JSON.parse(request.body.read)
       Rails.logger.info "Subscription: #{subscription.inspect}"
-      Webpush.payload_send(
+      WebPush.payload_send(
         message: {
           title: 'Push Notification',
           body: 'You have a new message!'
@@ -31,7 +31,7 @@ class NotificationsController < ApplicationController
   def self.send_daily_push_notifications
     subscriptions = PushSubscription.all
     subscriptions.each do |subscription|
-      Webpush.payload_send(
+      WebPush.payload_send(
         message: {
           title: 'Daily Push Notification',
           body: 'Here is your daily update!',
