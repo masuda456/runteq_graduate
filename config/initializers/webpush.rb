@@ -1,7 +1,7 @@
 Rails.application.config.webpush = {
   vapid_key: {
-    vapid_public_key: 'BAD2vsi8pwGL0SLmyMUjhyaGAEXP0GKZT2exQp7f6EOlToqhCm9qDLNPPyg6TssGrOS_g6cSkAJ0zKQklOJL7LE',
-    vapid_private_key: 'Jmo9OuGpelNpc5rWZnxhmtNdFtmO7gOI0tDDw6BThWA',
+    vapid_public_key: 'BLLLR6hD2JNT-pSrRD6D3cexVqrnxoprMOQrb2CXWOpkyDlDNMKdIdSITWOy6hW2_7hgesvF2U76RW4s2bLoVMw',
+    vapid_private_key: 'oRX8_JsHTvFXFFvVp51fGNXPJCIJsmT86UKgbFhoEaI',
     vapid_subject: 'mailto:s.koike1989.hkbc07@gmail.com'
   }
 }
