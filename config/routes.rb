@@ -29,4 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # push
+  post 'notifications/subscribe', to: 'notifications#subscribe'
+
 end
