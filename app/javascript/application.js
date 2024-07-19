@@ -51,4 +51,7 @@ navigator.serviceWorker.ready.then(function(registration) {
   console.error('Failed to subscribe the user: ', error);
   console.error('Error name: ', error.name);
   console.error('Error message: ', error.message);
+  if (error.stack) {
+    console.error('Error stack:', error.stack);
+  }
 });
