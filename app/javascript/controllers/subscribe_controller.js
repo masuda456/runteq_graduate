@@ -17,17 +17,32 @@ export default class extends Controller {
         if (permission === "granted") {
           const subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array("BNFQW8D0D_iGfNze8OI_6vgrGIcLNusOHDIRPqs8ex1HAqtJhy1uKoe0-hnB-7THPHZjYGkVzDUQtQYYbgsbYgQ=")
+            applicationServerKey: urlBase64ToUint8Array("YOUR_PUBLIC_VAPID_KEY")
           })
 
+          const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
           // サーバーにサブスクリプション情報を送信する
-          await fetch("/subscriptions", {
+          const response = await fetch("/subscriptions", {
             method: "POST",
-            body: JSON.stringify(subscription),
+            body: JSON.stringify({
+              subscription: {
+                endpoint: subscription.endpoint,
+                keys: {
+                  p256dh: subscription.toJSON().keys.p256dh,
+                  auth: subscription.toJSON().keys.auth
+                }
+              }
+            }),
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "X-CSRF-Token": csrfToken
             }
           })
+
+          if (!response.ok) {
+            throw new Error("Failed to save subscription on server")
+          }
 
           console.log("Subscribed!")
         } else {
