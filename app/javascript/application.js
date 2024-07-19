@@ -49,7 +49,7 @@ function subscribeUserToPush(registration) {
 
   registration.pushManager.subscribe(subscribeOptions)
     .then(function(pushSubscription) {
-      console.log('Received PushSubscription:', JSON.stringify(pushSubscription));
+      console.log('Received PushSubscription:', pushSubscription);
 
       if (!pushSubscription.keys || !pushSubscription.keys.p256dh || !pushSubscription.keys.auth) {
         throw new Error('PushSubscription keys are missing or undefined');
