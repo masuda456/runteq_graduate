@@ -19,7 +19,7 @@ class NotificationsController < ApplicationController
           private_key: Rails.application.config.webpush[:vapid_key][:private_key]
         }
       )
-      head :ok
+      render json: { message: 'Notification sent successfully' }, status: :ok
     rescue => e
       Rails.logger.error "Error sending push notification: #{e.message}"
       Rails.logger.error e.backtrace.join("\n")
