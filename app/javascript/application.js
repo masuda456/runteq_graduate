@@ -49,20 +49,18 @@ function subscribeUserToPush(registration) {
 
   registration.pushManager.subscribe(subscribeOptions)
     .then(function(pushSubscription) {
-      console.log('Received PushSubscription:', pushSubscription);
+      console.log('Received PushSubscription:', JSON.stringify(pushSubscription));
 
       if (!pushSubscription.keys || !pushSubscription.keys.p256dh || !pushSubscription.keys.auth) {
         throw new Error('PushSubscription keys are missing or undefined');
       }
 
-      const query = new URLSearchParams({
-        endpoint: pushSubscription.endpoint,
-        p256dh: pushSubscription.keys.p256dh,
-        auth: pushSubscription.keys.auth
-      }).toString();
-
-      return fetch(`/notifications/subscribe?${query}`, {
-        method: 'GET'
+      return fetch('/notifications/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pushSubscription)
       });
     })
     .then(response => {
