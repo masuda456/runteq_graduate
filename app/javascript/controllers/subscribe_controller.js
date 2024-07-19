@@ -45,6 +45,8 @@ export default class extends Controller {
           }
 
           console.log("Subscribed!")
+          const responseData = await response.json()
+          console.log("Server response:", responseData)
         } else {
           console.log("Notification permission denied")
         }
