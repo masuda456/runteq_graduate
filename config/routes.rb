@@ -29,8 +29,12 @@ Rails.application.routes.draw do
     end
   end
 
-  # push
-  post 'notifications/subscribe', to: 'notifications#subscribe'
-  # get 'notifications/subscribe', to: 'notifications#subscribe'
+  # web push
+  resources :subscriptions, only: %i[create] do
+    collection do
+      delete :destroy
+      post :change
+    end
+  end
 
 end

@@ -76,3 +76,4 @@ function subscribeUserToPush(registration) {
       }
     });
 }
+import "controllers"
