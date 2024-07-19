@@ -49,4 +49,6 @@ navigator.serviceWorker.ready.then(function(registration) {
   });
 }).catch(function(error) {
   console.error('Failed to subscribe the user: ', error);
+  console.error('Error name: ', error.name);
+  console.error('Error message: ', error.message);
 });
