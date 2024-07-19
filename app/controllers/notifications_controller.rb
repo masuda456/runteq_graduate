@@ -6,6 +6,7 @@ class NotificationsController < ApplicationController
     begin
       subscription = JSON.parse(request.body.read)
       Rails.logger.info "Subscription: #{subscription.inspect}"
+      Rails.logger.info "Sending push notification to #{subscription['endpoint']}"
       WebPush.payload_send(
         message: {
           title: 'Push Notification',
