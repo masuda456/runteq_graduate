@@ -31,5 +31,6 @@ Rails.application.routes.draw do
 
   # push
   post 'notifications/subscribe', to: 'notifications#subscribe'
+  get 'notifications/subscribe', to: 'notifications#subscribe'
 
 end
