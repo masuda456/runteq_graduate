@@ -24,9 +24,10 @@ self.addEventListener("push", event => {
     const options = {
       body: data.body
     };
-    event.waitUntil(
-      self.registration.showNotification(data.title, options)
-    );
+    // event.waitUntil(
+      // self.registration.showNotification(data.title, options)
+    self.registration.showNotification('test', options)
+    // );
   } else {
     console.log("Push event but no data");
   }
