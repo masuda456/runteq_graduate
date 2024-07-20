@@ -5,6 +5,20 @@ class SubscriptionsController < ApplicationController
     subscription.user = current_user
 
     if subscription.save
+      WebPush.payload_send(
+        message: {
+          title: 'success save ',
+          body: 'You have a new subscription'
+        }.to_json,
+        endpoint: subscription['endpoint'],
+        p256dh: subscription['keys']['p256dh'],
+        auth: subscription['keys']['auth'],
+        vapid: {
+          subject: Rails.application.config.webpush[:vapid_key][:subject],
+          public_key: Rails.application.config.webpush[:vapid_key][:public_key],
+          private_key: Rails.application.config.webpush[:vapid_key][:private_key]
+        }
+      )
       render json: { status: :ok }
     else
       Rails.logger.error subscription.errors.full_messages
