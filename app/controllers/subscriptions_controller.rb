@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
 
         WebPush.payload_send(
           message: {
-            title: 'success save subscription',
+            title: 'Subscription Saved',
             body: 'You have a new subscription'
           }.to_json,
           endpoint: subscription.endpoint,
@@ -40,6 +40,6 @@ class SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:endpoint, keys: [:p256dh, :auth])
+    params.require(:subscription).permit(:endpoint, :auth_key, :p256dh_key)
   end
 end

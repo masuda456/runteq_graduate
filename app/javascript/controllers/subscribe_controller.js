@@ -26,13 +26,9 @@ export default class extends Controller {
           const response = await fetch("/subscriptions", {
             method: "POST",
             body: JSON.stringify({
-              subscription: {
-                endpoint: subscription.endpoint,
-                keys: {
-                  p256dh: subscription.toJSON().keys.p256dh,
-                  auth: subscription.toJSON().keys.auth
-                }
-              }
+              endpoint: subscription.endpoint,
+              auth_key: subscription.toJSON().keys.auth,
+              p256dh_key: subscription.toJSON().keys.p256dh
             }),
             headers: {
               "Content-Type": "application/json",
