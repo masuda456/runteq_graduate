@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def create
 
     user_exercises = params[:user].delete(:exercises)
-    raise
     @user = User.new(user_params)
     @exercises = Exercise.all
 
