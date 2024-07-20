@@ -4,10 +4,12 @@
 workout_schedule_detail_count = WorkoutScheduleDetail.destroy_all.size
 workout_schedule_count = WorkoutSchedule.destroy_all.size
 exercise_count = Exercise.destroy_all.size
+Subscription.delete_all
 user_count = User.destroy_all.size
 
 # オートインクリメントをリセット
 ActiveRecord::Base.connection.execute("ALTER TABLE users AUTO_INCREMENT = 1")
+ActiveRecord::Base.connection.execute("ALTER TABLE subscriptions AUTO_INCREMENT = 1")
 ActiveRecord::Base.connection.execute("ALTER TABLE exercises AUTO_INCREMENT = 1")
 ActiveRecord::Base.connection.execute("ALTER TABLE workout_schedule_details AUTO_INCREMENT = 1")
 ActiveRecord::Base.connection.execute("ALTER TABLE workout_schedules AUTO_INCREMENT = 1")
