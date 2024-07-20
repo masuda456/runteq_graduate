@@ -6,16 +6,16 @@ class SubscriptionsController < ApplicationController
     if subscription.save
       WebPush.payload_send(
         message: {
-          title: 'Success save ',
+          title: 'Success save',
           body: 'You have a new subscription'
         }.to_json,
         endpoint: subscription.endpoint,
         p256dh: subscription.p256dh_key,
         auth: subscription.auth_key,
         vapid: {
-          subject: Rails.application.credentials.dig(:webpush, :vapid_key, :subject),
-          public_key: Rails.application.credentials.dig(:webpush, :vapid_key, :public_key),
-          private_key: Rails.application.credentials.dig(:webpush, :vapid_key, :private_key)
+          subject: VAPID_SUBJECT,
+          public_key: VAPID_PUBLIC_KEY,
+          private_key: VAPID_PRIVATE_KEY
         }
       )
       render json: { status: :ok }
