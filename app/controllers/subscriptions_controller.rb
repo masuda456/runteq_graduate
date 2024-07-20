@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
       begin
         Rails.logger.info "Attempting to send push notification to #{subscription.endpoint}"
 
-        WebPush.payload_send(
+        Webpush.payload_send(
           message: {
             title: 'Subscription Saved',
             body: 'You have a new subscription'
@@ -18,9 +18,9 @@ class SubscriptionsController < ApplicationController
           p256dh: subscription.p256dh_key,
           auth: subscription.auth_key,
           vapid: {
-            subject: Rails.application.config.webpush[:vapid_key][:subject],
-            public_key: Rails.application.config.webpush[:vapid_key][:public_key],
-            private_key: Rails.application.config.webpush[:vapid_key][:private_key]
+            subject: Rails.application.credentials.dig(:webpush, :vapid_key, :subject),
+            public_key: Rails.application.credentials.dig(:webpush, :vapid_key, :public_key),
+            private_key: Rails.application.credentials.dig(:webpush, :vapid_key, :private_key)
           }
         )
 
