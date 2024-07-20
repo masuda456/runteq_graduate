@@ -18,17 +18,27 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener("push", event => {
-  if (event.data) {
-    const data = event.data.json();
-    console.log("Push received:", data);
-    self.registration.showNotification('test', {body: 'showNotification test'});
-    const options = {
-      body: data.body
-    };
-    // event.waitUntil(
-      // self.registration.showNotification(data.title, options)
-    // );
-  } else {
-    console.log("Push event but no data");
-  }
+  // if (event.data) {
+  //   const data = event.data.json();
+  //   console.log("Push received:", data);
+  //   self.registration.showNotification('test', {body: 'showNotification test'});
+  //   const options = {
+  //     body: data.body
+  //   };
+  //   // event.waitUntil(
+  //     // self.registration.showNotification(data.title, options)
+  //   // );
+  // } else {
+  //   console.log("Push event but no data");
+  // }
+
+  const options = {
+    body: 'This is a test notification body'
+  };
+
+  event.waitUntil(
+    self.registration.showNotification('Test Notification', options)
+      .then(() => console.log("Notification shown successfully"))
+      .catch(err => console.error("Error showing notification", err))
+  );
 });
