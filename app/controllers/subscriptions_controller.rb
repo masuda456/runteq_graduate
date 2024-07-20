@@ -13,9 +13,9 @@ class SubscriptionsController < ApplicationController
         p256dh: subscription.p256dh_key,
         auth: subscription.auth_key,
         vapid: {
-          subject: Rails.application.credentials.dig(:webpush, :vapid_key, :subject),
-          public_key: Rails.application.credentials.dig(:webpush, :vapid_key, :public_key),
-          private_key: Rails.application.credentials.dig(:webpush, :vapid_key, :private_key)
+          subject: Rails.application.credentials.dig(:webpush, :subject),
+          public_key: Rails.application.credentials.dig(:webpush, :public_key),
+          private_key: Rails.application.credentials.dig(:webpush, :private_key)
         }
       )
       render json: { status: :ok }
