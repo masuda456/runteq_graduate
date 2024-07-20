@@ -21,12 +21,12 @@ self.addEventListener("push", event => {
   if (event.data) {
     const data = event.data.json();
     console.log("Push received:", data);
+    self.registration.showNotification('test', {body: 'showNotification test'});
     const options = {
       body: data.body
     };
     // event.waitUntil(
       // self.registration.showNotification(data.title, options)
-    self.registration.showNotification('test', options)
     // );
   } else {
     console.log("Push event but no data");
