@@ -15,8 +15,8 @@ class SubscriptionsController < ApplicationController
             body: 'You have a new subscription'
           }.to_json,
           endpoint: subscription.endpoint,
-          p256dh: subscription.keys['p256dh'],
-          auth: subscription.keys['auth'],
+          p256dh: subscription.p256dh_key,
+          auth: subscription.auth_key,
           vapid: {
             subject: Rails.application.config.webpush[:vapid_key][:subject],
             public_key: Rails.application.config.webpush[:vapid_key][:public_key],
