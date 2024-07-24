@@ -1,7 +1,9 @@
 # Pin npm packages by running ./bin/importmap
 
 pin "application"
-pin "register_sw"
+pin "sw", to: "sw.js"
+pin "register_sw", to: "register_sw.js"
+# pin "manifest"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
